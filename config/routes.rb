@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users
       resources :cuisines
       resources :dishes
+      resources :comments
     end
   end
 end
