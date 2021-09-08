@@ -3,4 +3,5 @@ class User < ApplicationRecord
 
     has_many :cuisines
     has_many :dishes, through: :cuisine
+    has_many :comments
 end
