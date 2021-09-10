@@ -1,11 +1,16 @@
-class DishesController < ApplicationController
+class Api::V1::DishesController < ApplicationController
   before_action :set_dish, only: [:show, :update, :destroy]
 
   # GET /dishes
   def index
-    @dishes = Dish.all
-
-    render json: @dishes
+    if logged_in?
+      @dishes = current_user.dishes
+      render json: @dishes
+    else
+      render json: {
+        error: "You must log in to see dishes"
+      }
+    end
   end
 
   # GET /dishes/1
