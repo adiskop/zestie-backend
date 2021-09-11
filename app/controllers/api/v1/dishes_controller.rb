@@ -5,7 +5,7 @@ class Api::V1::DishesController < ApplicationController
   def index
     if logged_in?
       @dishes = current_user.dishes
-      render json: @dishes
+      render json: DishSerializer.new(@dishes)
     else
       render json: {
         error: "You must log in to see dishes"
