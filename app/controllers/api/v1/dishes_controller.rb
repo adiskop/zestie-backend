@@ -51,6 +51,6 @@ class Api::V1::DishesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dish_params
-      params.require(:dish).permit(:name, :picture, :ingredients, :directions, :cook_time, :yield)
+      params.require(:dish).permit(:name, :picture, :ingredients, :directions, :cook_time)
     end
 end
