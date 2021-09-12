@@ -20,12 +20,15 @@ class Api::V1::DishesController < ApplicationController
 
   # POST /dishes
   def create
-    @dish = Dish.new(dish_params)
+    @dish = current_user.dishes.build(dish_params)
 
     if @dish.save
-      render json: @dish, status: :created, location: @dish
+      render json: DishSerializer.new(@dish), status: :created
     else
-      render json: @dish.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @dish.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
