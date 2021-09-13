@@ -1,7 +1,7 @@
 class Dish < ApplicationRecord
-    belongs_to :cuisine
+    belongs_to :cuisine, optional: true
     has_many :comments
     belongs_to :user
 
-    validates :name, :user, :cuisine, presence: true
+    validates :name, :user, presence: true
 end
