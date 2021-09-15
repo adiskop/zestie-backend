@@ -46,7 +46,14 @@ class Api::V1::DishesController < ApplicationController
 
   # DELETE /dishes/1
   def destroy
-    @dish.destroy
+    if @dish.destroy
+      render json:  { data: "Dish successfully destroyed" }, status: :ok
+    else
+      error_resp = {
+        error: "Dish not found and not destroyed"
+      }
+      render json: error_resp, status: :unprocessable_entity
+    end
   end
 
   private
@@ -57,6 +64,6 @@ class Api::V1::DishesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dish_params
-      params.require(:dish).permit(:name, :picture, :ingredients, :directions, :cook_time, :user_id)
+      params.require(:dish).permit(:name, :picture, :ingredients, :directions, :cook_time)
     end
 end
