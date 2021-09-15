@@ -35,9 +35,12 @@ class Api::V1::DishesController < ApplicationController
   # PATCH/PUT /dishes/1
   def update
     if @dish.update(dish_params)
-      render json: @dish
+      render json: DishSerializer.new(@dish), status: :ok
     else
-      render json: @dish.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @dish.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
