@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://zestie.herokuapp.com/api/v1','http://zestie-backend.herokuapp.com/api/v1','https://zestie.herokuapp.com', 'http://localhost:3002', 'https://zestie.herokuapp.com/api/v1','http://zestie-backend.herokuapp.com']
     resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
