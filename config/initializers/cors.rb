@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://zestie-backend.herokuapp.com/',
+    origins 'https://zestie-backend.herokuapp.com/',"https://zestie-backend.herokuapp.com/api/v1/login","https://zestie-backend.herokuapp.com/api/v1/get_current_user"
     Access-Control-Allow-Origin: https://zestie.herokuapp.com/
 
     resource '*',
