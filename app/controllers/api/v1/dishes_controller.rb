@@ -3,7 +3,7 @@ class Api::V1::DishesController < ApplicationController
 
   # GET /dishes
   def index
-    if logged_in?
+    if current_user.present?
       @dishes = current_user.dishes
       render json: DishSerializer.new(@dishes)
     else
